@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "18.14.x"
+          node-version: '18.14.x'
 
       - name: Cache dependencies Node
         uses: actions/cache@v3
@@ -25,11 +25,14 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
 
+      - name: Install pnpm
+        run: npm i -g pnpm
+
       - name: Install
-        run: npm i
+        run: pnpm i
 
       - name: Generate
-        run: npm run build
+        run: pnpm build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
