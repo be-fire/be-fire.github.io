@@ -1,2 +1,8 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import icon from '../gambar/Desain_tanpa_judul-removebg-preview.png';
+</script>
+
+<svelte:head>
+	<title>Be Fire</title>
+	<link rel="icon" href={icon} />
+</svelte:head>
