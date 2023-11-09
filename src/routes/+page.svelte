@@ -61,18 +61,14 @@
 
 	function tambahkan(id, selisih) {
 		if (browser) {
-			let listnya = JSON.parse(localStorage.listnya);
-			let terpilih = listnya.find((x) => x.id == id);
-			console.log('terpilih');
-			console.log(terpilih);
+			let listnya_scoped = JSON.parse(localStorage.listnya);
+			let terpilih = listnya_scoped.find((x) => x.id == id);
 
 			let tanggalan = new Date();
 			// tanggalan = new Date("2023-11-03");
 			let tanggal = tanggalan.getDate();
 
 			let semua_data = terpilih.data;
-			console.log('semua_data');
-			console.log(semua_data);
 			if (semua_data.length > 0 && semua_data[semua_data.length - 1].tanggal == tanggal) {
 				semua_data[semua_data.length - 1].banyaknya += selisih;
 			} else {
@@ -112,14 +108,12 @@
 							banyaknya: selisih
 						}
 					];
-					console.log('di sini');
 				}
 			}
 			terpilih.data = semua_data;
-			console.log(listnya);
 			reset = !reset;
-			// listnya = [...listnya];
-			localStorage.listnya = JSON.stringify(listnya);
+			listnya = [...listnya_scoped];
+			localStorage.listnya = JSON.stringify(listnya_scoped);
 		}
 	}
 
@@ -159,7 +153,7 @@
 						</div>
 						<div class="card card-compact w-full bg-base-100">
 							<div class="card-body">
-								<h2
+								<button
 									class="card-title text-center block select-none cursor-pointer"
 									on:click={() =>
 										edit({
@@ -168,7 +162,7 @@
 										})}
 								>
 									{x.judul}
-								</h2>
+								</button>
 								<div class="flex justify-between">
 									<button
 										class="btn btn-circle"
