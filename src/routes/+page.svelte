@@ -2,8 +2,13 @@
 	import Chartnya from '../komponen/chart.svelte';
 	import slug from '../fungsi/slug';
 	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 
 	let reset = false;
+
+	if (browser) {
+		window.addEventListener('resize', () => (reset = !reset));
+	}
 
 	let listnya = [];
 	if (browser) {
